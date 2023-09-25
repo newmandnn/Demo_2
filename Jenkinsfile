@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo 'Building PostgreSQL AWS RDS'
                 sh "pwd"
-                sh "cd terraform"
+                sh "cd terraform && ls -la"
                 sh "ls -la"
                 
             }
