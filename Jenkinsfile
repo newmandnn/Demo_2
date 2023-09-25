@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Terraform init'){
             steps {
-                sh "ls -la"
+                echo "In this stage we initializate Terraform"
                 sh '''cd terraform && terraform init'''
 
             }
@@ -20,9 +20,9 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building PostgreSQL AWS RDS'
-                sh "pwd"
-                sh "cd terraform && ls -la"
-                sh "ls -la"
+                sh "pwd && ls -la"
+                sh "cd terraform && terraform plan"
+                
                 
             }
         }
