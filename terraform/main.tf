@@ -53,6 +53,13 @@ resource "aws_security_group" "demo_rds" {
     Name = "Demo_RDS"
   }
 }
+/*
+resource "aws_db_instance_role" "tf_db_role" {
+  db_instance_identifier = aws_db_instance.identifier
+  feature_name           = "S3_INTEGRATION"
+  role_arn               = "aws:iam::877879097973:role/TF-jenkins-role"
+}
+*/
 
 resource "aws_db_instance" "demo_db_instance" {
   identifier             = "instance"

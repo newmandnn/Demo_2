@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sh "pwd"
                 sh "ls -la"
-                sh '''cd ../db/terraform && terraform destroy'''
+                sh '''cd ../DB/terraform && terraform destroy'''
 
             }
         }
