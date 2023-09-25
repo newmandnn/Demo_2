@@ -9,8 +9,9 @@ pipeline {
     stages {
         stage('Terraform destroy'){
             steps {
+                sh "pwd"
                 sh "ls -la"
-                sh '''cd terraform && terraform destroy'''
+                sh '''cd ../db/terraform && terraform destroy'''
 
             }
         }
