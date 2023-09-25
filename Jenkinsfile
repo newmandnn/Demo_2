@@ -10,7 +10,7 @@ pipeline {
         stage('Terraform init'){
             steps {
                 echo "In this stage we initializate Terraform"
-                sh '''cd terraform && terraform plan'''
+                sh '''cd terraform && terraform init'''
 
             }
         }
