@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    tools {
+        terraform 'terraform_new'
+    }
+
+    
+    stages {
+        stage('Terraform destroy'){
+            steps {
+                sh "ls -la"
+                sh '''cd terraform && terraform destroy'''
+
+            }
+        }
