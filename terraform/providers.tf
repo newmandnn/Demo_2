@@ -1,4 +1,11 @@
 terraform {
+  backend "s3" {
+    bucket  = "terraform-states-temp"
+    encrypt = true
+    key     = "AWS/DEV/terraform-states/terraform.tfstate"
+    region  = "eu-central-1"
+  }
+
   required_providers {
 
     aws = {

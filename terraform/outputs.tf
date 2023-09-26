@@ -15,3 +15,5 @@ output "rds_username" {
   value       = aws_db_instance.demo_db_instance.username
   sensitive   = true
 }
+
+
