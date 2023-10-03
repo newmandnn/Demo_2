@@ -1,0 +1,22 @@
+[
+    {
+        "name": "demo-container",
+        "image": "877879097973.dkr.ecr.eu-central-1.amazonaws.com/flask-app-demo-2:latest",
+        "essential": true,
+        "portMappings": [
+            {
+                "containerPort": 5000,
+                "hostPort": 5000,
+                "protocol": "tcp",
+                "appProtocol": "http"
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "/ecs/container",
+                "awslogs-region": "eu-central-1"
+            }
+        }
+    }
+]
