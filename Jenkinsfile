@@ -30,7 +30,7 @@ pipeline {
             steps {
                 echo 'Connecting DB to RDS'
                 sh "pwd && ls -la"
-                sh '''cd terraform && PGPASSWORD=demodemo psql -h $(terraform output -raw rds_hostname) -p $(terraform output -raw rds_port) -U $(terraform output -raw rds_username) MusicDB -f /var/lib/jenkins/workspace/DB/music_collection.sql'''
+                sh '''cd terraform && PGPASSWORD=$(aws secretsmanager get-secret-value --secret-id key_rds --version-stage AWSCURRENT | jq --raw-output .SecretString | jq -r ."password") psql -h $(terraform output -raw rds_hostname) -p $(terraform output -raw rds_port) -U $(terraform output -raw rds_username) MusicDB -f /var/lib/jenkins/workspace/DB/music_collection.sql'''
                 
                 
             }
