@@ -10,7 +10,7 @@ pipeline {
         stage('Terraform init'){
             steps {
                 echo "In this stage we initializate Terraform"
-                sh '''cd terraform && terraform init -upgrade && terraform plan'''
+                sh '''cd terraform && terraform init && terraform plan'''
 
             }
         }
@@ -19,7 +19,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Building PostgreSQL AWS RDS'
+                echo 'Building PostgreSQL AWS RDS and ECS-cluster with app'
                 sh "pwd && ls -la"
                 sh '''cd terraform && terraform apply --auto-approve'''
                 sleep 60
