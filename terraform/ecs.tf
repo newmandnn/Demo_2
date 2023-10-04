@@ -1,3 +1,10 @@
+module "ecr" {
+  source = "./modules/ecr"
+}
+
+
+
+
 resource "aws_ecs_cluster" "ecs_cluster" {
   name = "demo-cluster"
 }
