@@ -7,6 +7,17 @@ pipeline {
 
     
     stages {
+        stage('Delete ECR images'){
+            steps {
+                sh "pwd"
+                sh "ls -la"
+                sh "aws ecr batch-delete-image \
+                    --repository-name demo_2_app \
+                    --image-ids imageTag=latest"
+
+            }
+        }
+
         stage('Terraform destroy'){
             steps {
                 sh "pwd"
@@ -15,5 +26,16 @@ pipeline {
 
             }
         }
+
+        stage('Docker clean'){
+            steps {
+                sh "pwd"
+                sh "ls -la"
+                sh "docker system prune -a --volumes -f"
+
+            }
+        }
     }
 }
+
+
