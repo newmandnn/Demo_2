@@ -38,7 +38,7 @@ pipeline {
                 echo 'Building PostgreSQL AWS RDS and ECS-cluster with app'
                 sh "pwd && ls -la"
                 sh '''cd terraform && terraform apply --auto-approve'''
-                sleep 60
+                sleep 100
                 
             }
         }
