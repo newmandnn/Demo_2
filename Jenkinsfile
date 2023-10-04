@@ -23,7 +23,7 @@ pipeline {
             }
         }
 
-        stage('Build/Push Docker image'){
+        stage('Build/Push Docker image to ECR'){
             steps {
                 echo "In this stage we build Docker image and push it to ECR"
                 sh  "aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 877879097973.dkr.ecr.eu-central-1.amazonaws.com" 
@@ -43,7 +43,7 @@ pipeline {
             }
         }
         
-        stage('Connect DB') {
+        stage('Connect my DataBase to DB instance ') {
             steps {
                 echo 'Connecting DB to RDS'
                 sh "pwd && ls -la"
