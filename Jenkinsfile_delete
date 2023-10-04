@@ -18,20 +18,20 @@ pipeline {
             }
         }
 
-        stage('Terraform destroy'){
-            steps {
-                sh "pwd"
-                sh "ls -la"
-                sh '''cd ../DB/terraform && terraform destroy --auto-approve'''
-
-            }
-        }
-
         stage('Docker clean'){
             steps {
                 sh "pwd"
                 sh "ls -la"
                 sh "docker system prune -a --volumes -f"
+
+            }
+        }
+
+        stage('Terraform destroy'){
+            steps {
+                sh "pwd"
+                sh "ls -la"
+                sh '''cd ../DB/terraform && terraform destroy --auto-approve'''
 
             }
         }
