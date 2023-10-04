@@ -15,9 +15,25 @@ pipeline {
             }
         }
 
+        stage('Terraform build ECR'){
+            steps {
+                echo "In this stage we initializate ECR"
+                sh '''cd terraform && terraform apply --auto-approve -target=module.ecr'''
 
+            }
+        }
 
-        stage('Build') {
+        stage('Build/Push Docker image'){
+            steps {
+                echo "In this stage we build Docker image and push it to ECR"
+                sh  "aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 877879097973.dkr.ecr.eu-central-1.amazonaws.com" 
+                sh  "docker build -t demo_2_app Flask_Docker/." 
+                sh  "docker tag demo_2_app:latest 877879097973.dkr.ecr.eu-central-1.amazonaws.com/demo_2_app:latest" 
+                sh  "docker push 877879097973.dkr.ecr.eu-central-1.amazonaws.com/demo_2_app:latest" 
+            }
+        }
+
+        stage('Build RDS/ECS and all other tools in AWS') {
             steps {
                 echo 'Building PostgreSQL AWS RDS and ECS-cluster with app'
                 sh "pwd && ls -la"
@@ -26,7 +42,8 @@ pipeline {
                 
             }
         }
-    stage('Connect DB') {
+        
+        stage('Connect DB') {
             steps {
                 echo 'Connecting DB to RDS'
                 sh "pwd && ls -la"

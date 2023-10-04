@@ -1,7 +1,7 @@
 output "rds_hostname" {
   description = "RDS instance hostname"
   value       = aws_db_instance.demo_db_instance.address
-  sensitive   = true
+  //sensitive   = true
 }
 
 output "rds_port" {
@@ -13,7 +13,7 @@ output "rds_port" {
 output "rds_username" {
   description = "RDS instance root username"
   value       = aws_db_instance.demo_db_instance.username
-  sensitive   = true
+  //sensitive   = true
 }
 
 output "rds_password" {
