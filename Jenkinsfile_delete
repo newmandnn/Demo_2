@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Docker clean'){
+        stage('Delete Docker images'){
             steps {
                 sh "pwd"
                 sh "ls -la"
