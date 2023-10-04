@@ -14,9 +14,7 @@ pipeline {
 
             }
         }
-    }
 
-    stages {
         stage('Terraform build ECR'){
             steps {
                 echo "In this stage we initializate ECR"
@@ -24,9 +22,7 @@ pipeline {
 
             }
         }
-    }
 
-    stages {
         stage('Build Docker image'){
             steps {
                 echo "In this stage we build Docker image and push it to ECR"
@@ -38,3 +34,5 @@ pipeline {
         }
     }
 }
+
+    
